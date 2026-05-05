@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8: Sensor Technologies Quiz</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'SF UI Text', 'SF UI Display', 'Segoe UI', Arial, Helvetica, sans-serif;
+            padding-bottom: 50px;
+        }
+
+        h1, h3 {
+            color: #7b00ff;
+            font-weight: 700;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .mark-ratio-page {
+            font-size: 1.25rem;
+            color: #d1b3ff;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #7b00ff;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            display: inline-block;
+        }
+
+        .question-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-option {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #7b00ff;
+            width: 100%;
+            text-align: left;
+            padding: 12px 20px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+            font-size: 1rem;
+        }
+
+        .btn-option:hover:not(:disabled) {
+            background-color: #7b00ff;
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .btn-option:disabled {
+            opacity: 0.85;
+            cursor: not-allowed;
+        }
+
+        .btn-correct {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-wrong {
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+            color: #ffffff !important;
+        }
+
+        .feedback-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            background-color: #2a2a2a;
+            border-left: 4px solid #7b00ff;
+            font-size: 0.95rem;
+        }
+
+        /* Modal Styles */
+        #resultModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1050;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-custom {
+            background-color: #1e1e1e;
+            border: 2px solid #7b00ff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(123, 0, 255, 0.4);
+        }
+
+        .modal-content-custom h2 {
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 2.5rem;
+            color: #7b00ff;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .mark-ratio {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            margin: 10px 0;
+        }
+
+        .btn-close-custom {
+            background-color: #7b00ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-close-custom:hover {
+            background-color: #5e00c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container quiz-container">
+    <h1 class="text-center mb-4"><i class="fas fa-satellite-dish"></i> Chapter 8: Sensor Technologies</h1>
+    
+    <!-- Top Score Ratio -->
+    <div class="text-center mb-5">
+        <div class="mark-ratio-page" id="topScoreDisplay">Score: 0 / 7</div>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question-card" id="q1">
+        <div class="question-text"><strong>1.</strong> What distinguishes a transducer from a sensor?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">A transducer only detects physical changes without altering them.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, true)" data-correct="true">A transducer converts energy from one form to another, combining a sensor and signal conditioning.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">A transducer strictly converts electrical signals into physical mechanical motion.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">A transducer operates without any requirement for a signal conditioning unit.</button>
+        <div class="feedback-box" data-reason="A sensor merely detects physical changes in the environment. A transducer is a complete system consisting of a sensor and signal conditioning that converts energy from one form to another (often non-electrical to electrical).[cite: 2]"></div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-card" id="q2">
+        <div class="question-text"><strong>2.</strong> Which of the following devices is classified as an Active Transducer?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Resistance Temperature Detector (RTD)</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Strain Gauge</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Linear Variable Differential Transformer (LVDT)</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, true)" data-correct="true">Thermocouple</button>
+        <div class="feedback-box" data-reason="Active transducers are self-generating devices that produce their own electrical output without needing an external power source. Thermocouples and piezoelectric crystals are active, whereas RTDs, LVDTs, and strain gauges are passive (requiring external power).[cite: 2]"></div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-card" id="q3">
+        <div class="question-text"><strong>3.</strong> In a measurement system, what is the primary role of a Secondary Transducer?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">To act as the first element directly exposed to the harsh process variables.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, true)" data-correct="true">To detect mechanical changes from the primary sensing element and convert them into electrical signals.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">To convert electrical signals back into physical movements (actuation).</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">To isolate the measurement circuit from environmental noise.</button>
+        <div class="feedback-box" data-reason="A secondary transducer is the second stage in a measurement system. It detects the mechanical or physical change produced by the primary sensing element (like a Bourdon tube) and manipulates it into an electrical signal (like an LVDT does).[cite: 2]"></div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-card" id="q4">
+        <div class="question-text"><strong>4.</strong> When comparing a Thermistor to an RTD (Resistance Temperature Detector), which statement is true?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">RTDs possess a much faster response time due to their smaller thermal mass.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Thermistors are primarily made of pure metals like platinum and copper.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">RTDs have a narrower operating temperature range than thermistors.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, true)" data-correct="true">Thermistors have very high sensitivity but are highly non-linear, whereas RTDs are highly accurate and more linear over a wider range.</button>
+        <div class="feedback-box" data-reason="Thermistors (ceramic/polymer) offer high sensitivity and fast response but are non-linear and have a narrower range. RTDs (pure metals) offer excellent linearity, high accuracy, stability, and wider temperature ranges.[cite: 2]"></div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-card" id="q5">
+        <div class="question-text"><strong>5.</strong> How does a Resistive Strain Gauge respond when subjected to tensile stress (stretching)?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">Its length decreases and cross-sectional area increases, causing its electrical resistance to decrease.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, true)" data-correct="true">Its length increases and cross-sectional area narrows, causing its electrical resistance to increase.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">It produces its own active voltage output due to the Seebeck effect.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">It emits electrons due to the photoelectric effect, lowering its overall resistance.</button>
+        <div class="feedback-box" data-reason="When a strain gauge is subjected to tension (stretching), its metallic wire or foil elongates (length increases) and its cross-sectional area narrows. Because Resistance = ρ(L/A), this geometric change leads to a higher electrical resistance.[cite: 2]"></div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-card" id="q6">
+        <div class="question-text"><strong>6.</strong> Which photoelectric transducer functions by decreasing its resistance as the intensity of incident light increases?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">Photovoltaic Cell</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">Phototube (Photoemissive Cell)</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, true)" data-correct="true">Photoconductive Cell (Light-Dependent Resistor / LDR)</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">Photodiode</button>
+        <div class="feedback-box" data-reason="A photoconductive cell, also known as a Light-Dependent Resistor (LDR), changes its conductivity based on light. In darkness, its resistance is very high (megaohms), but under bright light, its resistance drops significantly.[cite: 2]"></div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-card" id="q7">
+        <div class="question-text"><strong>7.</strong> What physical quantity does a Linear Variable Differential Transformer (LVDT) directly convert into an electrical signal?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, true)" data-correct="true">Linear displacement</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Temperature</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Light intensity</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Direct pressure</button>
+        <div class="feedback-box" data-reason="An LVDT is an electromechanical passive inductive transducer specifically designed to convert linear displacement (the motion of its core) into a proportional electrical voltage signal.[cite: 2]"></div>
+    </div>
+
+    <!-- Bottom Score Ratio -->
+    <div class="text-center mt-5">
+        <div class="mark-ratio-page" id="bottomScoreDisplay">Score: 0 / 7</div>
+    </div>
+
+</div>
+
+<!-- Results Modal -->
+<div id="resultModal">
+    <div class="modal-content-custom">
+        <div class="mark-ratio" id="scoreRatioTop"></div>
+        <h2>Quiz Complete!</h2>
+        <p>Your final score is:</p>
+        <div class="score-display" id="scoreText"></div>
+        <div class="mark-ratio" id="scoreRatioBottom"></div>
+        <button class="btn-close-custom" onclick="closeModal()">Close Quiz</button>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let answeredQuestions = 0;
+    const totalQuestions = 7;
+
+    function selectAnswer(btnElement, questionId, isCorrect) {
+        const questionCard = document.getElementById('q' + questionId);
+        const buttons = questionCard.querySelectorAll('.btn-option');
+        const feedbackBox = questionCard.querySelector('.feedback-box');
+
+        // Disable all buttons in this question and highlight correct answer universally
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.getAttribute('data-correct') === 'true') {
+                btn.classList.add('btn-correct');
+            }
+        });
+
+        // Handle user's specific choice and feedback
+        if (isCorrect) {
+            score++;
+            feedbackBox.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> <strong>Correct!</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        } else {
+            btnElement.classList.add('btn-wrong');
+            feedbackBox.innerHTML = '<span class="text-danger"><i class="fas fa-times-circle"></i> <strong>Incorrect.</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        }
+        
+        feedbackBox.style.display = 'block';
+        answeredQuestions++;
+        
+        // Update page score ratios
+        updatePageScores();
+
+        // Show popup if all questions are answered
+        if (answeredQuestions === totalQuestions) {
+            setTimeout(showResultsModal, 1000);
+        }
+    }
+
+    function updatePageScores() {
+        const ratioText = `Score: ${score} / ${totalQuestions}`;
+        document.getElementById('topScoreDisplay').innerText = ratioText;
+        document.getElementById('bottomScoreDisplay').innerText = ratioText;
+    }
+
+    function showResultsModal() {
+        const ratioText = `Ratio: ${score} / ${totalQuestions}`;
+        
+        document.getElementById('scoreRatioTop').innerText = ratioText;
+        document.getElementById('scoreRatioBottom').innerText = ratioText;
+        document.getElementById('scoreText').innerText = `${score} out of ${totalQuestions}`;
+        
+        document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('resultModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
