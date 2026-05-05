@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7: Measuring Instruments Quiz</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'SF UI Text', 'SF UI Display', 'Segoe UI', Arial, Helvetica, sans-serif;
+            padding-bottom: 50px;
+        }
+
+        h1, h3 {
+            color: #7b00ff;
+            font-weight: 700;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .question-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-option {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #7b00ff;
+            width: 100%;
+            text-align: left;
+            padding: 12px 20px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+            font-size: 1rem;
+        }
+
+        .btn-option:hover:not(:disabled) {
+            background-color: #7b00ff;
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .btn-option:disabled {
+            opacity: 0.85;
+            cursor: not-allowed;
+        }
+
+        .btn-correct {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-wrong {
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+            color: #ffffff !important;
+        }
+
+        .feedback-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            background-color: #2a2a2a;
+            border-left: 4px solid #7b00ff;
+            font-size: 0.95rem;
+        }
+
+        /* Modal Styles */
+        #resultModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1050;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-custom {
+            background-color: #1e1e1e;
+            border: 2px solid #7b00ff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(123, 0, 255, 0.4);
+        }
+
+        .modal-content-custom h2 {
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 2.5rem;
+            color: #7b00ff;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .mark-ratio {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            margin: 10px 0;
+        }
+
+        .btn-close-custom {
+            background-color: #7b00ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-close-custom:hover {
+            background-color: #5e00c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container quiz-container">
+    <h1 class="text-center mb-5"><i class="fas fa-microchip"></i> Chapter 7: Measuring Instruments</h1>
+
+    <!-- Question 1 -->
+    <div class="question-card" id="q1">
+        <div class="question-text"><strong>1.</strong> Which measuring instrument determines the electric power in a circuit and typically utilizes a current coil connected in series and a voltage coil connected in parallel?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">Energy Meter</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">Phase Meter</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, true)" data-correct="true">Wattmeter</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">Q Meter</button>
+        <div class="feedback-box" data-reason="A wattmeter measures real power in a circuit and consists of a current coil connected in series to measure current and a voltage coil connected in parallel to measure voltage.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-card" id="q2">
+        <div class="question-text"><strong>2.</strong> What is the primary purpose of a Field Strength Meter?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">To measure the quality factor of inductors and capacitors.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, true)" data-correct="true">To measure the strength of electromagnetic fields in the RF spectrum.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">To measure the acidity or alkalinity of a liquid solution.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">To calculate the total electrical energy consumed over a period of time.</button>
+        <div class="feedback-box" data-reason="A Field Strength Meter detects and quantifies the intensity of electromagnetic signals in a specific frequency range, commonly the RF spectrum, and is used in antenna testing and propagation analysis.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-card" id="q3">
+        <div class="question-text"><strong>3.</strong> Which device operates on the principle of making a moving object appear stationary or slow-moving by emitting flashes of light at a specific frequency?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">Phase-sensitive detector</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">Megger Meter</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">Wattmeter</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, true)" data-correct="true">Stroboscope</button>
+        <div class="feedback-box" data-reason="A stroboscope measures the speed of rotating or vibrating objects by emitting periodic flashes of light that match the object's motion frequency, making it appear stationary.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-card" id="q4">
+        <div class="question-text"><strong>4.</strong> The Q Meter, which measures the quality factor of inductors and capacitors, operates based on the principle of:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, true)" data-correct="true">Resonance in an LC circuit</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Electromagnetic induction</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Phase-sensitive rectification</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">The stroboscopic effect</button>
+        <div class="feedback-box" data-reason="The Q Meter works based on the principle of resonance in an LC circuit, using a variable-frequency oscillator to drive the circuit to achieve resonance.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-card" id="q5">
+        <div class="question-text"><strong>5.</strong> A Megger Meter (megohmmeter) applies a high DC voltage across a material primarily to measure:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">The reactive power of a transmission line.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">The frequency of an unknown AC circuit.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, true)" data-correct="true">The insulation resistance of electrical equipment.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">The physical strain applied to a metallic grid.</button>
+        <div class="feedback-box" data-reason="A Megger Meter measures high resistance to verify the quality of insulation in electrical systems and cables by detecting leakage current.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-card" id="q6">
+        <div class="question-text"><strong>6.</strong> In a DC Wheatstone Bridge, what condition indicates that the bridge has achieved a "nulled" or balanced state?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">The total supply voltage drops to exactly zero.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, true)" data-correct="true">No current flows through the bridge (the galvanometer reads zero).</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">The variable resistance reaches its maximum possible limit.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">Maximum current flows across the voltage detector.</button>
+        <div class="feedback-box" data-reason="A Wheatstone bridge is balanced when no current flows through the bridge, meaning the voltage at the two detection points is equal and the galvanometer indicates zero.[cite: 1]"></div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-card" id="q7">
+        <div class="question-text"><strong>7.</strong> Which component in a pH meter is specifically sensitive to hydrogen ions and generates the potential difference required for measurement?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, true)" data-correct="true">Measurement electrode (Glass electrode)</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Reference electrode</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Copper shading band</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">Shunt magnet</button>
+        <div class="feedback-box" data-reason="In a pH meter, the glass measurement electrode is sensitive to hydrogen ions and interacts with them to produce a potential difference, while the reference electrode provides a stable voltage for comparison.[cite: 1]"></div>
+    </div>
+
+</div>
+
+<!-- Results Modal -->
+<div id="resultModal">
+    <div class="modal-content-custom">
+        <div class="mark-ratio" id="scoreRatioTop"></div>
+        <h2>Quiz Complete!</h2>
+        <p>Your final score is:</p>
+        <div class="score-display" id="scoreText"></div>
+        <div class="mark-ratio" id="scoreRatioBottom"></div>
+        <button class="btn-close-custom" onclick="closeModal()">Close Quiz</button>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let answeredQuestions = 0;
+    const totalQuestions = 7;
+
+    function selectAnswer(btnElement, questionId, isCorrect) {
+        const questionCard = document.getElementById('q' + questionId);
+        const buttons = questionCard.querySelectorAll('.btn-option');
+        const feedbackBox = questionCard.querySelector('.feedback-box');
+
+        // Disable all buttons in this question
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            // Highlight the correct answer universally
+            if (btn.getAttribute('data-correct') === 'true') {
+                btn.classList.add('btn-correct');
+            }
+        });
+
+        // Handle user's specific choice and feedback
+        if (isCorrect) {
+            score++;
+            feedbackBox.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> <strong>Correct!</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        } else {
+            btnElement.classList.add('btn-wrong');
+            feedbackBox.innerHTML = '<span class="text-danger"><i class="fas fa-times-circle"></i> <strong>Incorrect.</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        }
+        
+        feedbackBox.style.display = 'block';
+        answeredQuestions++;
+
+        // Show popup if all questions are answered
+        if (answeredQuestions === totalQuestions) {
+            setTimeout(showResultsModal, 1000);
+        }
+    }
+
+    function showResultsModal() {
+        const modal = document.getElementById('resultModal');
+        const ratioText = `Ratio: ${score} / ${totalQuestions}`;
+        
+        document.getElementById('scoreRatioTop').innerText = ratioText;
+        document.getElementById('scoreRatioBottom').innerText = ratioText;
+        document.getElementById('scoreText').innerText = `${score} out of ${totalQuestions}`;
+        
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('resultModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
