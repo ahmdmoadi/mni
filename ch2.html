@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Qualities of Measurement Quiz</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'SF UI Text', 'SF UI Display', 'Segoe UI', Arial, Helvetica, sans-serif;
+            padding-bottom: 50px;
+        }
+
+        h1, h3 {
+            color: #7b00ff;
+            font-weight: 700;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .mark-ratio-page {
+            font-size: 1.25rem;
+            color: #d1b3ff;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #7b00ff;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            display: inline-block;
+        }
+
+        .question-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-option {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #7b00ff;
+            width: 100%;
+            text-align: left;
+            padding: 12px 20px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+            font-size: 1rem;
+        }
+
+        .btn-option:hover:not(:disabled) {
+            background-color: #7b00ff;
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .btn-option:disabled {
+            opacity: 0.85;
+            cursor: not-allowed;
+        }
+
+        .btn-correct {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-wrong {
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+            color: #ffffff !important;
+        }
+
+        .feedback-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            background-color: #2a2a2a;
+            border-left: 4px solid #7b00ff;
+            font-size: 0.95rem;
+        }
+
+        /* Modal Styles */
+        #resultModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1050;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-custom {
+            background-color: #1e1e1e;
+            border: 2px solid #7b00ff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(123, 0, 255, 0.4);
+        }
+
+        .modal-content-custom h2 {
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 2.5rem;
+            color: #7b00ff;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .mark-ratio {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            margin: 10px 0;
+        }
+
+        .btn-close-custom {
+            background-color: #7b00ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-close-custom:hover {
+            background-color: #5e00c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container quiz-container">
+    <h1 class="text-center mb-4"><i class="fas fa-balance-scale"></i> Chapter 2: Qualities of Measurement</h1>
+    
+    <div class="text-center mb-5">
+        <div class="mark-ratio-page" id="topScoreDisplay">Score: 0 / 25</div>
+    </div>
+
+    <div class="question-card" id="q1">
+        <div class="question-text"><strong>1.</strong> What do static characteristics of an instrument primarily measure?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">Rapidly changing quantities over time.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, true)" data-correct="true">Unvarying or steady-state conditions.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">The transient behavior of a system.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 1, false)" data-correct="false">The delay or dynamic lag of an instrument.</button>
+        <div class="feedback-box" data-reason="Static characteristics are considered for instruments used to measure an unvarying condition. They are only interested in the steady-state reading the instrument settles down to."></div>
+    </div>
+
+    <div class="question-card" id="q2">
+        <div class="question-text"><strong>2.</strong> Which term describes how close an instrument's output reading is to the true value of the measured quantity?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Precision</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, true)" data-correct="true">Accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Tolerance</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 2, false)" data-correct="false">Resolution</button>
+        <div class="feedback-box" data-reason="Accuracy refers to how close a measurement is to the true or accepted value of the quantity being measured."></div>
+    </div>
+
+    <div class="question-card" id="q3">
+        <div class="question-text"><strong>3.</strong> If a high-precision instrument gives readings that are clustered closely together but are far from the actual true value, the measurements possess:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">High precision, high accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">Low precision, high accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, true)" data-correct="true">High precision, low accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 3, false)" data-correct="false">Low precision, low accuracy</button>
+        <div class="feedback-box" data-reason="Precision means the readings are close to each other (highly repeatable). However, if they are far from the true value, the accuracy is low."></div>
+    </div>
+
+    <div class="question-card" id="q4">
+        <div class="question-text"><strong>4.</strong> Which of the following is defined as the maximum error that is expected or allowable in a manufactured component or measurement?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Threshold</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Sensitivity</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, true)" data-correct="true">Tolerance</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 4, false)" data-correct="false">Resolution</button>
+        <div class="feedback-box" data-reason="Tolerance describes the maximum allowable or expected error, typically represented as a +/- value off a nominal specification."></div>
+    </div>
+
+    <div class="question-card" id="q5">
+        <div class="question-text"><strong>5.</strong> The algebraic difference between the upper range value and the lower range value of an instrument is known as its:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, true)" data-correct="true">Span</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">Threshold</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">Accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 5, false)" data-correct="false">Linearity</button>
+        <div class="feedback-box" data-reason="Span is the algebraic difference between the upper range value and lower range value (e.g., if range is -40 to 400, span is 440)."></div>
+    </div>
+
+    <div class="question-card" id="q6">
+        <div class="question-text"><strong>6.</strong> In measurement systems, "sensitivity" represents:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">The smallest measurable input change from any arbitrary point.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, true)" data-correct="true">The ratio of the change in output to the change in input.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">The maximum allowable percentage error.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 6, false)" data-correct="false">The time taken for the reading to reach steady state.</button>
+        <div class="feedback-box" data-reason="Sensitivity is the ratio of change in instrument output to the change in the value of the quantity being measured (the slope of the calibration curve)."></div>
+    </div>
+
+    <div class="question-card" id="q7">
+        <div class="question-text"><strong>7.</strong> How is the "threshold" of an instrument defined?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">The largest input value it can measure before failing.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">The smallest measurable input change from a non-zero value.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, true)" data-correct="true">The minimum input level from zero required to produce a detectable output change.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 7, false)" data-correct="false">The total time it takes for an instrument to respond.</button>
+        <div class="feedback-box" data-reason="Threshold defines the smallest measurable input from zero before a detectable change occurs in the output reading (like a speedometer needing to reach 15 km/h before moving)."></div>
+    </div>
+
+    <div class="question-card" id="q8">
+        <div class="question-text"><strong>8.</strong> Which type of drift causes a constant error that exists uniformly over the full range of measurement, often requiring recalibration?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 8, false)" data-correct="false">Sensitivity drift</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 8, true)" data-correct="true">Zero drift</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 8, false)" data-correct="false">Dynamic lag</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 8, false)" data-correct="false">Parallax drift</button>
+        <div class="feedback-box" data-reason="Zero drift (or bias) modifies the zero reading, resulting in a constant error added across the full range of the instrument."></div>
+    </div>
+
+    <div class="question-card" id="q9">
+        <div class="question-text"><strong>9.</strong> Dynamic characteristics of an instrument are primarily concerned with:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 9, false)" data-correct="false">Unvarying or steady-state conditions.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 9, true)" data-correct="true">Quantities that fluctuate rapidly with time.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 9, false)" data-correct="false">The maximum limits of measurable output.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 9, false)" data-correct="false">Random human observation errors.</button>
+        <div class="feedback-box" data-reason="Dynamic characteristics show the relationship between the system input and output when the measured quantity is varying rapidly over time."></div>
+    </div>
+
+    <div class="question-card" id="q10">
+        <div class="question-text"><strong>10.</strong> The degree to which an instrument faithfully reproduces changes in the measured variable without dynamic error is known as:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 10, false)" data-correct="false">Lag</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 10, false)" data-correct="false">Speed of response</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 10, true)" data-correct="true">Fidelity</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 10, false)" data-correct="false">Tolerance</button>
+        <div class="feedback-box" data-reason="Fidelity is defined as the degree to which an instrument indicates changes in the measured variable without dynamic error (faithful reproduction)."></div>
+    </div>
+
+    <div class="question-card" id="q11">
+        <div class="question-text"><strong>11.</strong> Which circuit or system type provides an instantaneous output response to a change in input, perfectly following it without distortion?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 11, true)" data-correct="true">Zero-Order Measurement</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 11, false)" data-correct="false">First-Order Measurement</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 11, false)" data-correct="false">Second-Order Measurement</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 11, false)" data-correct="false">Third-Order Measurement</button>
+        <div class="feedback-box" data-reason="A zero-order system gives an instantaneous response without any delay or dynamic lag, meaning the output instantly follows the input."></div>
+    </div>
+
+    <div class="question-card" id="q12">
+        <div class="question-text"><strong>12.</strong> A thermocouple plunged into boiling water exhibits an exponential response characterized by a time constant. It is a classic example of a:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 12, false)" data-correct="false">Zero-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 12, true)" data-correct="true">First-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 12, false)" data-correct="false">Second-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 12, false)" data-correct="false">Third-order instrument</button>
+        <div class="feedback-box" data-reason="Thermocouples are first-order instruments. They do not respond instantaneously but instead approach the final reading exponentially governed by a single time constant."></div>
+    </div>
+
+    <div class="question-card" id="q13">
+        <div class="question-text"><strong>13.</strong> In a second-order instrument's step response, a damping ratio (ζ) of exactly 1 indicates that the system is:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 13, false)" data-correct="false">Undamped</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 13, false)" data-correct="false">Underdamped</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 13, true)" data-correct="true">Critically Damped</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 13, false)" data-correct="false">Overdamped</button>
+        <div class="feedback-box" data-reason="A damping ratio of exactly 1 (ζ=1) means the system is critically damped, reaching the final value as fast as possible without any overshoot or oscillation."></div>
+    </div>
+
+    <div class="question-card" id="q14">
+        <div class="question-text"><strong>14.</strong> An accelerometer is a common commercial example of which type of measuring instrument?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 14, false)" data-correct="false">Zero-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 14, false)" data-correct="false">First-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 14, true)" data-correct="true">Second-order instrument</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 14, false)" data-correct="false">Fourth-order instrument</button>
+        <div class="feedback-box" data-reason="An accelerometer is a second-order instrument, which exhibits complex dynamic behavior governed by a damping ratio (often between 0.6 and 0.8) and natural frequency."></div>
+    </div>
+
+    <div class="question-card" id="q15">
+        <div class="question-text"><strong>15.</strong> What is the primary purpose of instrument calibration?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 15, false)" data-correct="false">To completely eliminate all random errors occurring in measurements.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 15, true)" data-correct="true">To evaluate and adjust the accuracy by comparing against a known standard.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 15, false)" data-correct="false">To increase the overall operational range of the device.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 15, false)" data-correct="false">To permanently prevent observational parallax errors.</button>
+        <div class="feedback-box" data-reason="Calibration evaluates and adjusts the accuracy and precision of an instrument by comparing its readings to a known, highly accurate standard."></div>
+    </div>
+
+    <div class="question-card" id="q16">
+        <div class="question-text"><strong>16.</strong> Which of the following is an example of a Gross Error?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 16, true)" data-correct="true">Misreading a scale and writing down 100V instead of 1.00V.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 16, false)" data-correct="false">Minor temperature fluctuations altering the reading.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 16, false)" data-correct="false">A voltmeter that consistently reads 0.2V too high.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 16, false)" data-correct="false">Small electrical noise creating spread in digital output.</button>
+        <div class="feedback-box" data-reason="Gross errors are caused by human blunders, such as misreading a scale, writing down numbers incorrectly, or spilling solutions, producing massive deviations from the true value."></div>
+    </div>
+
+    <div class="question-card" id="q17">
+        <div class="question-text"><strong>17.</strong> How can random errors in measurement be best minimized?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 17, false)" data-correct="false">By adjusting the zero drift thumbwheel.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 17, true)" data-correct="true">By taking multiple measurements and calculating their average.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 17, false)" data-correct="false">By training observers to constantly look straight at the scale to avoid parallax.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 17, false)" data-correct="false">By performing a one-time calibration against a primary standard.</button>
+        <div class="feedback-box" data-reason="Random errors are unpredictable, meaning they fluctuate both above and below the true value. Taking multiple readings and averaging them helps cancel out these fluctuations."></div>
+    </div>
+
+    <div class="question-card" id="q18">
+        <div class="question-text"><strong>18.</strong> Which type of error consistently biases results in the same direction and cannot be fixed simply by taking statistical averages?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 18, false)" data-correct="false">Random error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 18, true)" data-correct="true">Systematic error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 18, false)" data-correct="false">Indeterminate error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 18, false)" data-correct="false">Gross error</button>
+        <div class="feedback-box" data-reason="Systematic errors are consistent, repeatable errors that shift results in one direction (bias). Averaging doesn't remove them; they must be addressed via calibration or correction."></div>
+    </div>
+
+    <div class="question-card" id="q19">
+        <div class="question-text"><strong>19.</strong> A parallax error caused by reading a graduated cylinder from the wrong angle is classified as what kind of systematic error?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 19, false)" data-correct="false">Environmental error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 19, true)" data-correct="true">Observational error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 19, false)" data-correct="false">Instrumental error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 19, false)" data-correct="false">Computational error</button>
+        <div class="feedback-box" data-reason="Observational errors are systematic errors introduced by the observer's habits, with parallax error being the most common example."></div>
+    </div>
+
+    <div class="question-card" id="q20">
+        <div class="question-text"><strong>20.</strong> In a series RLC circuit, decreasing the resistance (R) causes the damping ratio (ζ) to:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 20, true)" data-correct="true">Decrease, pushing the circuit toward underdamped (oscillatory) behavior.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 20, false)" data-correct="false">Increase, pushing the circuit toward overdamped (sluggish) behavior.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 20, false)" data-correct="false">Remain unchanged, since resistance only affects steady state.</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 20, false)" data-correct="false">Become critically damped instantly.</button>
+        <div class="feedback-box" data-reason="Since the damping ratio relies heavily on R, decreasing R decreases the numerator, lowering the damping ratio and causing faster, underdamped (oscillatory) behavior."></div>
+    </div>
+
+    <div class="question-card" id="q21">
+        <div class="question-text"><strong>21.</strong> Which measurement standard is defined by international agreement, maintained at the BIPM in Paris, and is NOT available for ordinary users?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 21, false)" data-correct="false">Working Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 21, false)" data-correct="false">Secondary Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 21, false)" data-correct="false">Primary Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 21, true)" data-correct="true">International Standard</button>
+        <div class="feedback-box" data-reason="The International Standard is the highest possible standard, defined by international agreement and preserved at the BIPM. It is not available to ordinary users."></div>
+    </div>
+
+    <div class="question-card" id="q22">
+        <div class="question-text"><strong>22.</strong> Which standard acts as the principal tool of a measurement laboratory, used routinely to check and calibrate everyday laboratory instruments?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 22, false)" data-correct="false">International Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 22, false)" data-correct="false">Primary Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 22, false)" data-correct="false">Secondary Standard</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 22, true)" data-correct="true">Working Standard</button>
+        <div class="feedback-box" data-reason="Working standards are the principal tools used in industry labs for everyday checking and calibrating of manufactured components and general instruments."></div>
+    </div>
+
+    <div class="question-card" id="q23">
+        <div class="question-text"><strong>23.</strong> In statistical analysis of measurement data, a low standard deviation indicates:</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 23, false)" data-correct="false">High accuracy</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 23, true)" data-correct="true">High precision</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 23, false)" data-correct="false">High tolerance</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 23, false)" data-correct="false">High systematic error</button>
+        <div class="feedback-box" data-reason="Standard deviation measures data dispersion. A low standard deviation means the readings are clustered tightly around the mean, denoting high precision."></div>
+    </div>
+
+    <div class="question-card" id="q24">
+        <div class="question-text"><strong>24.</strong> A thermometer is placed into a $0^{\circ}C$ ice bath, but reads $3^{\circ}C$ consistently across 10 trials. This behavior is indicative of what error?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 24, true)" data-correct="true">Instrumental Systematic Error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 24, false)" data-correct="false">Environmental Random Error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 24, false)" data-correct="false">Gross Error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 24, false)" data-correct="false">Observational Parallax Error</button>
+        <div class="feedback-box" data-reason="Because it is a consistent bias showing up repeatedly in the exact same direction, it is a systematic instrumental error (like a shifted zero point or bad calibration)."></div>
+    </div>
+
+    <div class="question-card" id="q25">
+        <div class="question-text"><strong>25.</strong> What represents the difference between the true value of a quantity changing with time and the value indicated by the instrument?</div>
+        <button class="btn btn-option" onclick="selectAnswer(this, 25, true)" data-correct="true">Dynamic Error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 25, false)" data-correct="false">Fidelity</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 25, false)" data-correct="false">Static Error</button>
+        <button class="btn btn-option" onclick="selectAnswer(this, 25, false)" data-correct="false">Dynamic Lag</button>
+        <div class="feedback-box" data-reason="Dynamic error is defined as the difference between the true value of a changing quantity and the instrument's reading at a specific time, assuming static error is zero."></div>
+    </div>
+
+
+    <div class="text-center mt-5">
+        <div class="mark-ratio-page" id="bottomScoreDisplay">Score: 0 / 25</div>
+    </div>
+
+</div>
+
+<div id="resultModal">
+    <div class="modal-content-custom">
+        <div class="mark-ratio" id="scoreRatioTop"></div>
+        <h2>Quiz Complete!</h2>
+        <p>Your final score is:</p>
+        <div class="score-display" id="scoreText"></div>
+        <div class="mark-ratio" id="scoreRatioBottom"></div>
+        <button class="btn-close-custom" onclick="closeModal()">Close Quiz</button>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let answeredQuestions = 0;
+    const totalQuestions = 25;
+
+    function selectAnswer(btnElement, questionId, isCorrect) {
+        const questionCard = document.getElementById('q' + questionId);
+        const buttons = questionCard.querySelectorAll('.btn-option');
+        const feedbackBox = questionCard.querySelector('.feedback-box');
+
+        // Disable all buttons in this question and highlight correct answer universally
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.getAttribute('data-correct') === 'true') {
+                btn.classList.add('btn-correct');
+            }
+        });
+
+        // Handle user's specific choice and feedback
+        if (isCorrect) {
+            score++;
+            feedbackBox.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> <strong>Correct!</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        } else {
+            btnElement.classList.add('btn-wrong');
+            feedbackBox.innerHTML = '<span class="text-danger"><i class="fas fa-times-circle"></i> <strong>Incorrect.</strong></span><br><br>' + feedbackBox.getAttribute('data-reason');
+        }
+        
+        feedbackBox.style.display = 'block';
+        answeredQuestions++;
+        
+        // Update page score ratios
+        updatePageScores();
+
+        // Show popup if all questions are answered
+        if (answeredQuestions === totalQuestions) {
+            setTimeout(showResultsModal, 1000);
+        }
+    }
+
+    function updatePageScores() {
+        const ratioText = `Score: ${score} / ${totalQuestions}`;
+        document.getElementById('topScoreDisplay').innerText = ratioText;
+        document.getElementById('bottomScoreDisplay').innerText = ratioText;
+    }
+
+    function showResultsModal() {
+        const ratioText = `Ratio: ${score} / ${totalQuestions}`;
+        
+        document.getElementById('scoreRatioTop').innerText = ratioText;
+        document.getElementById('scoreRatioBottom').innerText = ratioText;
+        document.getElementById('scoreText').innerText = `${score} out of ${totalQuestions}`;
+        
+        document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('resultModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
